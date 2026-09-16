@@ -1,36 +1,269 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💎 Azizi Jewellery
 
-## Getting Started
+> ✨ A modern, elegant, and responsive jewellery website built with **Next.js** and **Tailwind CSS**, designed to provide a premium digital experience for jewellery showcasing and brand presentation.
 
-First, run the development server:
+🌐 **Live Demo:**
+https://sulemansadat.github.io/azizi-jewellery/
+
+---
+
+## 🖼️ About The Project
+
+**Azizi Jewellery** is a modern jewellery website focused on delivering a clean, elegant, and responsive user experience.
+
+The project was developed with a modern frontend architecture using **Next.js**, **React**, **TypeScript**, and **Tailwind CSS**, with optimized static deployment through **GitHub Pages**.
+
+The website is designed to work smoothly across:
+
+* 💻 Desktop
+* 📱 Mobile
+* 📟 Tablet
+* 🌐 Modern Web Browsers
+
+---
+
+## ✨ Features
+
+* 💎 Modern jewellery-focused UI/UX
+* 📱 Fully responsive design
+* ⚡ Fast and optimized Next.js application
+* 🎨 Tailwind CSS styling
+* 🧩 Reusable React components
+* 🖼️ Optimized image handling
+* 🔤 Custom font optimization with `next/font`
+* 📐 Responsive layouts for different screen sizes
+* 🌙 Clean and elegant visual design
+* 🚀 Static site generation
+* 🌐 GitHub Pages deployment
+* 📦 Production-ready build configuration
+* 🔗 GitHub Pages `basePath` support
+
+---
+
+## 🛠️ Tech Stack
+
+### 🎨 Frontend
+
+| Technology          | Purpose                                      |
+| ------------------- | -------------------------------------------- |
+| ⚛️ **React.js**     | Building interactive UI components           |
+| ▲ **Next.js**       | React framework and application architecture |
+| 📘 **TypeScript**   | Type-safe JavaScript development             |
+| 🎨 **Tailwind CSS** | Utility-first styling and responsive design  |
+| 🧱 **HTML5**        | Semantic page structure                      |
+| 🎯 **CSS3**         | Styling and visual presentation              |
+
+### ⚙️ Development & Runtime
+
+| Technology          | Purpose                        |
+| ------------------- | ------------------------------ |
+| 🟢 **Node.js**      | JavaScript runtime environment |
+| 📦 **npm**          | Package management             |
+| 🔧 **Git**          | Version control                |
+| 🐙 **GitHub**       | Source code hosting            |
+| 🚀 **GitHub Pages** | Static website hosting         |
+
+### 🧰 Next.js Features
+
+The project also uses several Next.js capabilities, including:
+
+* `next/font`
+* Static Site Generation
+* `output: "export"`
+* Image optimization configuration
+* `basePath`
+* `assetPrefix`
+* App Router
+* TypeScript support
+
+---
+
+## 📁 Project Structure
+
+```text
+azizi-jewellery/
+│
+├── app/
+│   ├── page.tsx
+│   ├── layout.tsx
+│   └── ...
+│
+├── public/
+│   ├── images/
+│   └── ...
+│
+├── components/
+│   └── ...
+│
+├── next.config.ts
+├── package.json
+├── tsconfig.json
+├── postcss.config.mjs
+├── eslint.config.mjs
+└── README.md
+```
+
+> 📌 The exact structure may evolve as the project grows.
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the repository
+
+```bash
+git clone https://github.com/sulemansadat/azizi-jewellery.git
+```
+
+### 2️⃣ Navigate to the project
+
+```bash
+cd azizi-jewellery
+```
+
+### 3️⃣ Install dependencies
+
+```bash
+npm install
+```
+
+### 4️⃣ Start the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open your browser and visit:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🏗️ Production Build
 
-To learn more about Next.js, take a look at the following resources:
+To create a production build:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Because this project is configured for static export, Next.js generates a deployable static version of the application.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🌐 Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The project is configured for deployment on **GitHub Pages**.
+
+### GitHub Pages Configuration
+
+The application uses:
+
+```ts
+output: "export"
+```
+
+and:
+
+```ts
+basePath: "/azizi-jewellery"
+```
+
+This allows the Next.js application to correctly operate under the repository path:
+
+```text
+https://sulemansadat.github.io/azizi-jewellery/
+```
+
+### 🚀 Live Website
+
+Visit the deployed application:
+
+👉 **https://sulemansadat.github.io/azizi-jewellery/**
+
+---
+
+## 🖼️ Assets
+
+Static assets such as images are stored inside:
+
+```text
+public/
+```
+
+For example:
+
+```text
+public/images/
+```
+
+They are included in the static export and deployed together with the application.
+
+---
+
+## 🔧 Available Scripts
+
+| Command         | Description                                |
+| --------------- | ------------------------------------------ |
+| `npm run dev`   | 🧑‍💻 Start development server             |
+| `npm run build` | 🏗️ Create production build                |
+| `npm run start` | ▶️ Start production server when applicable |
+| `npm run lint`  | 🔍 Run ESLint checks                       |
+
+---
+
+## 📚 Technologies & Resources
+
+* ▲ **Next.js** — React framework
+* ⚛️ **React** — UI library
+* 📘 **TypeScript** — Type-safe development
+* 🎨 **Tailwind CSS** — Styling framework
+* 🟢 **Node.js** — Runtime environment
+* 📦 **npm** — Dependency management
+* 🐙 **GitHub** — Version control & repository hosting
+* 🚀 **GitHub Pages** — Deployment & hosting
+
+---
+
+## 🎯 Project Goals
+
+The main goals of this project are:
+
+* 💎 Create a premium digital presence for a jewellery brand
+* 🎨 Deliver an elegant and modern interface
+* 📱 Provide a seamless responsive experience
+* ⚡ Maintain good performance and optimized assets
+* 🧩 Build reusable and maintainable React components
+* 🚀 Demonstrate modern Next.js development and static deployment
+
+---
+
+## 👨‍💻 Developer
+
+Developed by **Suleman Sadat**
+
+🔗 **Live Project:**
+https://sulemansadat.github.io/azizi-jewellery/
+
+🐙 **GitHub:**
+https://github.com/sulemansadat
+
+---
+
+## 📄 License
+
+This project is intended for educational, portfolio, and project demonstration purposes.
+
+---
+
+<div align="center">
+
+### 💎 Azizi Jewellery
+
+**Modern • Elegant • Responsive • Crafted with Next.js**
+
+⭐ If you find this project interesting, consider giving the repository a star!
+
+</div>
