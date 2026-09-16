@@ -2,6 +2,7 @@ import Image from "next/image";
 import GoldCalculator from "@/components/GoldCalculator";
 import Hero from "@/components/Hero";
 import Reveal from "@/components/Reveal";
+import { publicAsset } from "@/lib/assets";
 import TrustBar from "@/components/TrustBar";
 import { CONTACT } from "@/lib/contact";
 
@@ -108,7 +109,7 @@ export default function Home() {
             <Reveal>
               <div className="relative aspect-[4/5] overflow-hidden md:aspect-[5/4] lg:aspect-[4/5]">
                 <Image
-                  src="/images/accent-gold.jpg"
+                  src={publicAsset("/images/accent-gold.jpg")}
                   alt="Gold rope chain arranged on a white sculptural plinth"
                   fill
                   sizes="(max-width: 1024px) 92vw, 46vw"
@@ -208,7 +209,7 @@ export default function Home() {
             <Reveal className="relative order-1 min-h-[18rem] md:min-h-[24rem] lg:order-2 lg:min-h-full">
               <div className="relative h-72 md:h-96 lg:absolute lg:inset-0 lg:h-auto">
                 <Image
-                  src="/images/atelier-gold.jpg"
+                  src={publicAsset("/images/atelier-gold.jpg")}
                   alt="Gold necklace and earrings presented on a white jeweller’s bust"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -226,7 +227,7 @@ export default function Home() {
           <div className="relative overflow-hidden">
             <div className="absolute inset-0">
               <Image
-                src="/images/visit-gold.jpg"
+                src={publicAsset("/images/visit-gold.jpg")}
                 alt="Gold and diamond bracelet on a pale surface"
                 fill
                 sizes="100vw"

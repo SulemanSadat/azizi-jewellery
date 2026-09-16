@@ -1,11 +1,12 @@
 import Image from "next/image";
+import { publicAsset } from "@/lib/assets";
 
 export default function Hero() {
   return (
     <section id="sell-gold" className="scroll-mt-16 md:scroll-mt-20">
       <div className="relative isolate flex min-h-[calc(100svh-4rem)] items-center justify-center overflow-hidden md:min-h-[calc(100svh-4.5rem)] lg:min-h-[calc(100svh-5rem)]">
         <Image
-          src="/images/visit-gold.jpg"
+          src={publicAsset("/images/visit-gold.jpg")}
           alt="Gold and diamond bracelet on a pale surface"
           fill
           sizes="100vw"

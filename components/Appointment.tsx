@@ -1,6 +1,7 @@
 import Image from "next/image";
 import AppointmentForm from "@/components/AppointmentForm";
 import Reveal from "@/components/Reveal";
+import { publicAsset } from "@/lib/assets";
 import { CONTACT } from "@/lib/contact";
 
 export default function Appointment() {
@@ -10,7 +11,7 @@ export default function Appointment() {
         <div className="relative overflow-hidden">
           <div className="absolute inset-0">
             <Image
-              src="/images/visit-gold.jpg"
+              src={publicAsset("/images/visit-gold.jpg")}
               alt="Gold and diamond bracelet on a pale surface"
               fill
               sizes="100vw"
