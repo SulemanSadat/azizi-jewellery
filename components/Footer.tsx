@@ -15,7 +15,7 @@ export default function Footer() {
             JEWELLERY LIMITED
           </p>
           <p className="mt-5 max-w-xs text-sm leading-7 text-muted">
-            Gold buying and fine jewellery. A London house, by appointment.
+            A trusted London jewellery house offering clear valuations when you sell gold or silver, alongside a refined selection of fine jewellery, by appointment.
           </p>
           <SocialLinks className="mt-6" />
         </div>
@@ -51,6 +51,9 @@ export default function Footer() {
             ))}
             <a href="/appointment" className="min-h-10 py-1 hover:text-champagne-dark">
               Book an Appointment
+            </a>
+            <a href="/login" className="min-h-10 py-1 hover:text-champagne-dark">
+              Sign in
             </a>
           </nav>
         </div>

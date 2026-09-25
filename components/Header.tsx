@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useAuth } from "@/components/auth/AuthProvider";
 import { CONTACT } from "@/lib/contact";
 import { navLinks } from "@/lib/nav";
 
@@ -29,6 +30,9 @@ function Logo() {
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { user, ready } = useAuth();
+  const accountHref = ready && user ? "/account" : "/login";
+  const accountLabel = ready && user ? "Account" : "Sign in";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -69,6 +73,12 @@ export default function Header() {
           </nav>
 
           <div className="flex shrink-0 items-center gap-4">
+            <Link
+              href={accountHref}
+              className="hidden min-h-11 items-center text-[0.68rem] tracking-[0.2em] text-ink uppercase transition-colors hover:text-champagne-dark lg:inline-flex"
+            >
+              {accountLabel}
+            </Link>
             <Link
               href="/appointment"
               className="hidden min-h-11 items-center justify-center border border-charcoal bg-charcoal px-5 text-[0.68rem] tracking-[0.2em] text-ivory-soft uppercase transition-colors hover:border-champagne-dark hover:bg-champagne-dark lg:inline-flex"
@@ -144,6 +154,17 @@ export default function Header() {
                 onClick={() => setOpen(false)}
               >
                 Book an Appointment
+              </Link>
+              <Link
+                href={accountHref}
+                className={`border-b border-gold-line py-4 font-serif text-[2rem] leading-none text-charcoal transition-[opacity,transform] duration-500 md:text-4xl ${
+                  open ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
+                }`}
+                style={{ transitionDelay: open ? `${120 + (navLinks.length + 1) * 55}ms` : "0ms" }}
+                tabIndex={open ? 0 : -1}
+                onClick={() => setOpen(false)}
+              >
+                {accountLabel}
               </Link>
             </div>
             <p

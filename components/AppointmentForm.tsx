@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { API_URL } from "@/lib/api/config";
 import { CONTACT } from "@/lib/contact";
 
 const fieldClass =
@@ -13,28 +14,84 @@ export default function AppointmentForm() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [notes, setNotes] = useState("");
-  const [sent, setSent] = useState(false);
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState("");
+
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const lines = [
-      "Appointment enquiry",
-      `Name: ${name}`,
-      email ? `Email: ${email}` : null,
-      phone ? `Phone: ${phone}` : null,
-      date ? `Preferred date: ${date}` : null,
-      time ? `Preferred time: ${time}` : null,
-      notes ? `Notes: ${notes}` : null,
-    ].filter(Boolean);
+    setLoading(true);
+    setSent(false);
+    setError("");
 
-    const href = `${CONTACT.whatsappUrl}?text=${encodeURIComponent(lines.join("\n"))}`;
-    window.open(href, "_blank", "noopener,noreferrer");
-    setSent(true);
+    try {
+      const response = await fetch(`${API_URL}/api/appointments`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          service: "Appointment",
+          appointment_date: date,
+          appointment_time: time,
+          notes,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data?.message || "Unable to submit your appointment request."
+        );
+      }
+
+      const lines = [
+        "Appointment enquiry",
+        `Name: ${name}`,
+        `Email: ${email}`,
+        `Phone: ${phone}`,
+        `Preferred date: ${date}`,
+        `Preferred time: ${time}`,
+        notes ? `Notes: ${notes}` : null,
+      ].filter(Boolean);
+
+      const href = `${CONTACT.whatsappUrl}?text=${encodeURIComponent(
+        lines.join("\n")
+      )}`;
+
+      window.open(href, "_blank", "noopener,noreferrer");
+
+      setSent(true);
+
+      setName("");
+      setEmail("");
+      setPhone("");
+      setDate("");
+      setTime("");
+      setNotes("");
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <form className="glass-panel calculator-lift px-5 py-6 md:px-8 md:py-8" onSubmit={onSubmit}>
+    <form
+      className="glass-panel calculator-lift px-5 py-6 md:px-8 md:py-8"
+      onSubmit={onSubmit}
+    >
       <div className="grid gap-5 md:grid-cols-2">
         <label className="block">
           <span className="text-[0.65rem] tracking-[0.24em] text-champagne-dark uppercase">
@@ -49,6 +106,7 @@ export default function AppointmentForm() {
             className={fieldClass}
           />
         </label>
+
         <label className="block">
           <span className="text-[0.65rem] tracking-[0.24em] text-champagne-dark uppercase">
             Email
@@ -63,11 +121,13 @@ export default function AppointmentForm() {
             className={fieldClass}
           />
         </label>
+
         <label className="block">
           <span className="text-[0.65rem] tracking-[0.24em] text-champagne-dark uppercase">
             Telephone
           </span>
           <input
+            required
             type="tel"
             name="phone"
             autoComplete="tel"
@@ -76,11 +136,13 @@ export default function AppointmentForm() {
             className={fieldClass}
           />
         </label>
+
         <label className="block">
           <span className="text-[0.65rem] tracking-[0.24em] text-champagne-dark uppercase">
             Preferred date
           </span>
           <input
+            required
             type="date"
             name="date"
             value={date}
@@ -88,19 +150,21 @@ export default function AppointmentForm() {
             className={fieldClass}
           />
         </label>
+
         <label className="block md:col-span-2">
           <span className="text-[0.65rem] tracking-[0.24em] text-champagne-dark uppercase">
             Preferred time
           </span>
           <input
-            type="text"
+            required
+            type="time"
             name="time"
-            placeholder="Morning or afternoon"
             value={time}
             onChange={(event) => setTime(event.target.value)}
             className={fieldClass}
           />
         </label>
+
         <label className="block md:col-span-2">
           <span className="text-[0.65rem] tracking-[0.24em] text-champagne-dark uppercase">
             Notes
@@ -118,20 +182,28 @@ export default function AppointmentForm() {
 
       <button
         type="submit"
-        className="mt-7 inline-flex min-h-12 items-center justify-center bg-charcoal px-7 text-[0.72rem] tracking-[0.2em] text-ivory-soft uppercase transition-colors hover:bg-champagne-dark"
+        disabled={loading}
+        className="mt-7 inline-flex min-h-12 items-center justify-center bg-charcoal px-7 text-[0.72rem] tracking-[0.2em] text-ivory-soft uppercase transition-colors hover:bg-champagne-dark disabled:cursor-not-allowed disabled:opacity-60"
       >
-        Send enquiry
+        {loading ? "Sending..." : "Book Appointment"}
       </button>
 
-      {sent ? (
+      {sent && (
         <p className="mt-4 text-sm leading-6 text-muted" role="status">
-          WhatsApp will open with your request. If it does not, write to us on{" "}
-          {CONTACT.phoneDisplay}.
+          Your appointment request has been received. WhatsApp has also been
+          opened so you can continue the conversation with us.
         </p>
-      ) : (
+      )}
+
+      {error && (
+        <p className="mt-4 text-sm leading-6 text-red-700" role="alert">
+          {error}
+        </p>
+      )}
+
+      {!sent && !error && (
         <p className="mt-4 text-sm leading-6 text-muted">
-          This form prepares a private enquiry. Online booking can be connected
-          here later without changing the page.
+          Your details will be securely submitted for appointment processing.
         </p>
       )}
     </form>
