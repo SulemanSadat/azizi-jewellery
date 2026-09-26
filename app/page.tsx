@@ -133,7 +133,9 @@ export default async function Home() {
             <div className="relative aspect-[4/5] overflow-hidden md:aspect-[5/4] lg:aspect-[4/5]">
               <Image
                 src={publicAsset(
-                  services?.image_url || "/images/accent-gold.jpg"
+                  services?.image_url?.startsWith("/")
+                    ? (services.image_url as `/${string}`)
+                    : "/images/accent-gold.jpg"
                 )}
                 alt="Gold rope chain arranged on a white sculptural plinth"
                 fill
